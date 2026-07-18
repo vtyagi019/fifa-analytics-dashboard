@@ -20,5 +20,5 @@ A data analytics project analyzing FIFA World Cup matches using Python and Strea
 FIFA World Cup historical match data
 
 ## 🌐 Live App
-https://fifa-analytics-dashboard-srlivdvllgyewbzzohuie7.streamlit.app/
+[https://fifa-analytics-dashboard-srlivdvllgyewbzzohuie7.streamlit.app/](https://fifareport.lovable.app)
 
