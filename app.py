@@ -19,68 +19,97 @@ st.markdown(
       --muted:rgba(255,255,255,0.70);
       --accent:#35d0ff;
       --accent2:#7c4dff;
+      --accent3:#22c55e;
       --good:#22c55e;
       --warn:#f59e0b;
       --bad:#ef4444;
-      --shadow: 0 16px 60px rgba(0,0,0,0.55);
-      --shadow2: 0 10px 35px rgba(0,0,0,0.40);
+      --shadow: 0 18px 70px rgba(0,0,0,0.55);
+      --shadow2: 0 12px 42px rgba(0,0,0,0.40);
       --radius:18px;
+      --radius2:24px;
     }
 
     html, body {
       background:
-        radial-gradient(1200px 600px at 20% 10%, rgba(53,208,255,0.10), transparent 55%),
-        radial-gradient(1000px 520px at 80% 0%, rgba(124,77,255,0.10), transparent 50%),
+        radial-gradient(1200px 600px at 20% 10%, rgba(53,208,255,0.12), transparent 55%),
+        radial-gradient(1000px 520px at 80% 0%, rgba(124,77,255,0.12), transparent 50%),
+        radial-gradient(900px 500px at 40% 80%, rgba(34,197,94,0.07), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       color: var(--text);
     }
 
+    /* subtle grid */
+    .stApp::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity:0.18;
+      mix-blend-mode: overlay;
+    }
+
     .main .block-container{ padding-top: 26px; }
 
-    /* Glass */
+    /* Glass card */
     .glass{
-      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
-      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(135deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.16);
       box-shadow: var(--shadow2);
       border-radius: var(--radius);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position:relative;
+      overflow:hidden;
+    }
+    .glass::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(600px 220px at 20% 0%, rgba(53,208,255,0.18), transparent 55%);
+      opacity:0.7;
+      pointer-events:none;
     }
 
     /* 3D KPI */
     .kpi{
       position: relative;
       overflow:hidden;
-      padding: 18px 16px;
+      padding: 20px 16px;
       transform-style: preserve-3d;
-      transition: transform 250ms ease, box-shadow 250ms ease;
+      transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
     }
     .kpi::before{
       content:"";
       position:absolute;
-      inset:-60px;
+      inset:-70px;
       background:
-        radial-gradient(circle at 30% 20%, rgba(53,208,255,0.28), transparent 45%),
-        radial-gradient(circle at 80% 0%, rgba(124,77,255,0.25), transparent 48%);
+        radial-gradient(circle at 30% 20%, rgba(53,208,255,0.32), transparent 45%),
+        radial-gradient(circle at 80% 0%, rgba(124,77,255,0.28), transparent 48%),
+        radial-gradient(circle at 50% 80%, rgba(34,197,94,0.16), transparent 50%);
       transform: translateZ(-1px);
       pointer-events:none;
     }
     .kpi:hover{
-      transform: translateY(-3px) rotateX(1deg);
-      box-shadow: 0 28px 85px rgba(0,0,0,0.60);
+      transform: translateY(-3px) rotateX(2deg);
+      box-shadow: 0 30px 95px rgba(0,0,0,0.62);
     }
 
     .kpi .label{
       font-size: 12px;
       color: var(--muted);
-      letter-spacing: 0.6px;
+      letter-spacing: 0.7px;
       text-transform: uppercase;
     }
     .kpi .value{
-      font-size: 28px;
-      font-weight: 900;
-      line-height: 1.1;
+      font-size: 30px;
+      font-weight: 950;
+      line-height: 1.05;
       margin-top: 10px;
+      text-shadow: 0 0 22px rgba(53,208,255,0.12);
     }
     .kpi .sub{
       font-size: 12px;
@@ -91,36 +120,83 @@ st.markdown(
     /* Hero */
     .hero{
       padding: 22px 22px;
-      border-radius: calc(var(--radius) + 6px);
+      border-radius: var(--radius2);
       box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.16);
-      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.18);
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
       position: relative;
       overflow: hidden;
     }
-
     .hero::after{
       content:"";
       position:absolute;
       inset:-2px;
-      background: linear-gradient(90deg, rgba(53,208,255,0.18), rgba(124,77,255,0.18));
-      opacity: 0.35;
-      transform: translateX(-30%);
+      background:
+        linear-gradient(90deg, rgba(53,208,255,0.28), rgba(124,77,255,0.24));
+      opacity: 0.42;
+      transform: translateX(-26%);
       transition: transform 900ms ease;
       pointer-events:none;
     }
-
     .hero:hover::after{ transform: translateX(0%); }
 
-    .hero h1{ margin: 0; font-size: 34px; font-weight: 950; letter-spacing: 0.2px; }
-    .hero p{ margin: 10px 0 0 0; color: var(--muted); max-width: 900px; }
+    .hero h1{
+      margin: 0;
+      font-size: 34px;
+      font-weight: 980;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 26px rgba(53,208,255,0.16);
+    }
+    .hero p{ margin: 10px 0 0 0; color: var(--muted); max-width: 980px; }
 
+    /* Sidebar improvements */
+    .stSidebar {
+      background: rgba(0,0,0,0.10);
+    }
     .stSidebar section{ padding: 16px 14px !important; }
-    .plotly-container{ background: transparent !important; }
+
+    .stMarkdown .glass{ background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)); }
+
+    /* Plotly dark theme vibe */
+    .plot-container, .plotly-container{ background: transparent !important; }
+
+    /* Widget styling */
+    .stMultiSelect div[data-baseweb="select"]:hover,
+    .stSelectbox div[data-baseweb="select"]:hover,
+    .stMultiSelect div[data-baseweb="select"],
+    .stSelectbox div[data-baseweb="select"]{
+      background: rgba(255,255,255,0.05) !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+      border-radius: 12px;
+    }
+
+    .stButton button {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.92);
+      border-radius: 12px;
+    }
+    .stButton button:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .stApp [data-testid="stSidebar"],
+    .stApp .stSidebar {
+      color: rgba(255,255,255,0.92);
+    }
+
+    section[data-testid="stSidebar"],
+    [data-testid="stSidebar"] {
+      background: rgba(0,0,0,0.15);
+    }
+
+    /* Make radio/checkbox labels readable */
+    .stCheckbox label, .stRadio label { color: rgba(255,255,255,0.86); }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
 
 
 def kpi_card(label: str, value, sub: str = "") -> str:
@@ -250,7 +326,8 @@ fig_top.update_layout(
     showlegend=False,
 )
 fig_top.update_traces(marker_line_width=0)
-st.plotly_chart(fig_top, width="stretch")
+st.plotly_chart(fig_top, use_container_width=True)
+
 
 # Team Comparison
 team_list = sorted(df["home_team"].unique())
@@ -280,7 +357,8 @@ fig_cmp.update_layout(
     showlegend=False,
 )
 fig_cmp.update_yaxes(zerolinecolor="rgba(255,255,255,0.2)")
-st.plotly_chart(fig_cmp, width="stretch")
+st.plotly_chart(fig_cmp, use_container_width=True)
+
 
 # Match insights
 section_title("Match Insights", "Result distribution derived from home/away goals")
@@ -315,7 +393,8 @@ fig_pie.update_layout(
     height=420,
     showlegend=False,
 )
-st.plotly_chart(fig_pie, width="stretch")
+st.plotly_chart(fig_pie, use_container_width=True)
+
 
 # Raw Data (optional)
 show_raw = st.sidebar.checkbox("📄 Show raw data", value=False)
